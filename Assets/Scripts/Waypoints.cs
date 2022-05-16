@@ -5,11 +5,11 @@ using UnityEngine;
 public class Waypoints : MonoBehaviour
 {
     public GameObject[] waypoints;
-    int waypointIndex = 0;
     public float speed = 1f;
-    public float rotSpeed = 5f;
-    float WRadius = 1; //de kiem tra xem khoang cach giua player va waypoint
-                       //la phu hop de duoc danh dau la da di qua
+
+    private int waypointIndex = 0;
+    private float WRadius = 1; //de kiem tra xem khoang cach giua player va waypoint
+                               //la phu hop de duoc danh dau la da di qua
 
     private void Update()
     {
@@ -23,11 +23,24 @@ public class Waypoints : MonoBehaviour
                 waypointIndex = 0;
         }
 
-        Debug.Log(waypointIndex);
-
         transform.position = Vector3.MoveTowards(transform.position, waypoints[waypointIndex].transform.position, Time.deltaTime * speed);
 
-        transform.LookAt(waypoints[waypointIndex].transform);
+        transform.LookAt(waypoints[waypointIndex].transform.position);
+    }
+
+
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        if (waypoints != null && waypoints.Length > 0)
+        {
+            for (int i = 1; i < waypoints.Length; i++)
+            {
+                Gizmos.DrawLine(waypoints[i - 1].transform.position, waypoints[i].transform.position);
+            }
+            Gizmos.DrawLine(waypoints[0].transform.position, waypoints[waypoints.Length - 1].transform.position);
+        }
     }
 }
 
