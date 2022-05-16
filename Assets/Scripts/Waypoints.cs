@@ -12,13 +12,12 @@ public class Waypoints : MonoBehaviour
 
     private void Update()
     {
-
-
-        //kiem tra xem da di qua het cac diem chua
-        //neu da di qua het thi set index ve 0 de di lai tu dau
+        //moi khi di qua thi tang index de di den diem moi
         if (Vector3.Distance(waypoints[waypointIndex].transform.position, transform.position) < WRadius)
         {
             waypointIndex++;
+            //kiem tra xem da di qua het cac diem chua
+            //neu da di qua het thi set index ve 0 de di lai tu dau
             if (waypointIndex >= waypoints.Length)
                 waypointIndex = 0;
         }
