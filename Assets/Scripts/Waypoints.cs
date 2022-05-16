@@ -7,6 +7,7 @@ public class Waypoints : MonoBehaviour
     public GameObject[] waypoints;
     int waypointIndex = 0;
     public float speed = 1f;
+    public float rotSpeed = 5f;
     float WRadius = 1; //de kiem tra xem khoang cach giua player va waypoint
                        //la phu hop de duoc danh dau la da di qua
 
@@ -25,6 +26,8 @@ public class Waypoints : MonoBehaviour
         Debug.Log(waypointIndex);
 
         transform.position = Vector3.MoveTowards(transform.position, waypoints[waypointIndex].transform.position, Time.deltaTime * speed);
+
+        transform.LookAt(waypoints[waypointIndex].transform);
     }
 }
 
