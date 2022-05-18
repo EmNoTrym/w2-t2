@@ -12,7 +12,7 @@ public class Editor : EditorWindow
 
     private void OnGUI()
     {
-        foreach (var obj in Selection.gameObjects)
+        foreach (var obj in GameObject.FindGameObjectsWithTag("Waypoint"))
         {
             float x = obj.transform.position.x;
             float y = obj.transform.position.y;
